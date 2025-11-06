@@ -20,12 +20,12 @@ import {
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-import logo from "../../src/assets/Logo.png";
+import logo from "../../../src/assets/Logo.png";
 
 const BRAND_BLUE = "#2B22C9";
 const ACCENT_ORANGE = "#F39C12";
 
-export default function NavBar() {
+export default function Header() {
   const [anchor, setAnchor] = React.useState({});
   const openMenu = (label, el) => setAnchor((p) => ({ ...p, [label]: el }));
   const closeMenu = (label) => setAnchor((p) => ({ ...p, [label]: null }));
