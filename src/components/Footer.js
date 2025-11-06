@@ -8,6 +8,8 @@ import {
   Button,
   Link as MuiLink,
   Divider,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import PhoneInTalkRoundedIcon from "@mui/icons-material/PhoneInTalkRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
@@ -21,41 +23,57 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import DirectionsCarRoundedIcon from "@mui/icons-material/DirectionsCarRounded";
 import footerBg from "../../src/assets/bg-footer.png";
 
-const BRAND_BLUE = "#1B1783"; 
+const BRAND_BLUE = "#1B1783";
 const BRAND_BLUE_DARK = "#15145F";
 const ACCENT_ORANGE = "#F39C12";
 
-const linkSx = {
-  display: "inline-flex",
-  alignItems: "center",
-  gap: 1,
-  color: "rgba(255,255,255,0.85)",
-  fontSize: 18,
-  textDecoration: "none",
-  "&:hover": { color: "#fff" },
-};
-
-const bullet = (
-  <ArrowForwardIosRoundedIcon sx={{ fontSize: 14, opacity: 0.8 }} />
-);
-
 function Footer() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Link style (with mobile hover/tap support)
+  const linkSx = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 1,
+    color: "rgba(255,255,255,0.85)",
+    fontSize: isMobile ? 16 : 18,
+    textDecoration: "none",
+    transition: "all 0.3s ease",
+    "& svg": { transition: "color 0.3s ease" },
+    "&:hover": {
+      color: ACCENT_ORANGE,
+      "& svg": { color: ACCENT_ORANGE },
+    },
+    "&:active": {
+      color: ACCENT_ORANGE,
+      transform: isMobile ? "scale(0.97)" : "none",
+    },
+    "&:focus-visible": {
+      outline: "none",
+      color: ACCENT_ORANGE,
+    },
+  };
+
+  const bullet = (
+    <ArrowForwardIosRoundedIcon sx={{ fontSize: 14, opacity: 0.8 }} />
+  );
+
   return (
     <Box
-  component="footer"
-  sx={{
-    position: "relative",
-    color: "#fff",
-    backgroundImage: `url(${footerBg})`, 
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    pt: { xs: 6, md: 8 },
-    pb: 3,
-    overflow: "hidden",
-  }}
->
-
+      component="footer"
+      sx={{
+        position: "relative",
+        color: "#fff",
+        backgroundImage: `url(${footerBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        pt: { xs: 6, md: 8 },
+        pb: 3,
+        overflow: "hidden",
+      }}
+    >
       {/* Subtle grid overlay */}
       <Box
         sx={{
@@ -99,7 +117,7 @@ function Footer() {
                 </Typography>
                 <Typography sx={{ opacity: 0.95, maxWidth: 720 }}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </Typography>
               </Stack>
             </Grid>
@@ -107,7 +125,10 @@ function Footer() {
               item
               xs={12}
               md="auto"
-              sx={{ display: "flex", justifyContent: { xs: "flex-start", md: "flex-end" } }}
+              sx={{
+                display: "flex",
+                justifyContent: { xs: "flex-start", md: "flex-end" },
+              }}
             >
               <Button
                 variant="contained"
@@ -121,6 +142,7 @@ function Footer() {
                   px: 2.5,
                   py: 1.25,
                   "&:hover": { bgcolor: "#F7F7FF" },
+                  "&:active": { bgcolor: "#f0f0ff" },
                 }}
               >
                 CONTACT US
@@ -147,7 +169,10 @@ function Footer() {
                     mr: 0.5,
                   }}
                 >
-                  <DirectionsCarRoundedIcon sx={{ color: "#fff" }} fontSize="small" />
+                  <DirectionsCarRoundedIcon
+                    sx={{ color: "#fff" }}
+                    fontSize="small"
+                  />
                 </Box>
                 <Typography sx={{ fontWeight: 800, fontSize: 22 }}>
                   Autovia
@@ -185,10 +210,11 @@ function Footer() {
           <Grid item xs={12} sm={6} md={2.666}>
             <Typography sx={{ fontWeight: 800, mb: 1.5 }}>Quick Links</Typography>
             <Stack spacing={1.1}>
-              <MuiLink href="#" sx={linkSx}>{bullet} Home</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Cars</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Services</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Contact Us</MuiLink>
+              {["Home", "Vehicle", "Services", "About", "Pages"].map((label) => (
+                <MuiLink key={label} href="#" sx={linkSx}>
+                  {bullet} {label}
+                </MuiLink>
+              ))}
             </Stack>
           </Grid>
 
@@ -196,10 +222,11 @@ function Footer() {
           <Grid item xs={12} sm={6} md={2.666}>
             <Typography sx={{ fontWeight: 800, mb: 1.5 }}>Rent A Car</Typography>
             <Stack spacing={1.1}>
-              <MuiLink href="#" sx={linkSx}>{bullet} Sport Car</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} SUV Car</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} MVP Car</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Sedan Car</MuiLink>
+              {["Sport Car", "SUV Car", "MVP Car", "Sedan Car"].map((label) => (
+                <MuiLink key={label} href="#" sx={linkSx}>
+                  {bullet} {label}
+                </MuiLink>
+              ))}
             </Stack>
           </Grid>
 
@@ -207,10 +234,16 @@ function Footer() {
           <Grid item xs={12} sm={6} md={2.666}>
             <Typography sx={{ fontWeight: 800, mb: 1.5 }}>Information</Typography>
             <Stack spacing={1.1}>
-              <MuiLink href="#" sx={linkSx}>{bullet} Privacy Policy</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Terms & Conditions</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Disclaimer</MuiLink>
-              <MuiLink href="#" sx={linkSx}>{bullet} Support</MuiLink>
+              {[
+                "Privacy Policy",
+                "Terms & Conditions",
+                "Disclaimer",
+                "Support",
+              ].map((label) => (
+                <MuiLink key={label} href="#" sx={linkSx}>
+                  {bullet} {label}
+                </MuiLink>
+              ))}
             </Stack>
           </Grid>
         </Grid>
@@ -235,62 +268,35 @@ function Footer() {
           </Typography>
 
           <Stack direction="row" spacing={1.25}>
-            <Button
-              aria-label="Facebook"
-              size="small"
-              sx={{
-                minWidth: 0,
-                p: 1,
-                bgcolor: BRAND_BLUE_DARK,
-                borderRadius: "50%",
-                "&:hover": { bgcolor: "#231cab" },
-              }}
-            >
-              <FacebookRoundedIcon fontSize="small" sx={{ color: "#fff" }} />
-            </Button>
-            <Button
-              aria-label="Instagram"
-              size="small"
-              sx={{
-                minWidth: 0,
-                p: 1,
-                bgcolor: BRAND_BLUE_DARK,
-                borderRadius: "50%",
-                "&:hover": { bgcolor: "#231cab" },
-              }}
-            >
-              <InstagramIcon fontSize="small" sx={{ color: "#fff" }} />
-            </Button>
-            <Button
-              aria-label="X"
-              size="small"
-              sx={{
-                minWidth: 0,
-                p: 1,
-                bgcolor: BRAND_BLUE_DARK,
-                borderRadius: "50%",
-                "&:hover": { bgcolor: "#231cab" },
-              }}
-            >
-              <XIcon fontSize="small" sx={{ color: "#fff" }} />
-            </Button>
-            <Button
-              aria-label="LinkedIn"
-              size="small"
-              sx={{
-                minWidth: 0,
-                p: 1,
-                bgcolor: BRAND_BLUE_DARK,
-                borderRadius: "50%",
-                "&:hover": { bgcolor: "#231cab" },
-              }}
-            >
-              <LinkedInIcon fontSize="small" sx={{ color: "#fff" }} />
-            </Button>
+            {[FacebookRoundedIcon, InstagramIcon, XIcon, LinkedInIcon].map(
+              (Icon, i) => (
+                <Button
+                  key={i}
+                  size="small"
+                  sx={{
+                    minWidth: 0,
+                    p: isMobile ? 0.6 : 1,
+                    bgcolor: BRAND_BLUE_DARK,
+                    borderRadius: "50%",
+                    "&:hover": { bgcolor: "#231cab" },
+                    "&:active": {
+                      bgcolor: "#231cab",
+                      transform: isMobile ? "scale(0.95)" : "none",
+                    },
+                  }}
+                >
+                  <Icon
+                    fontSize={isMobile ? "small" : "medium"}
+                    sx={{ color: "#fff" }}
+                  />
+                </Button>
+              )
+            )}
           </Stack>
         </Stack>
       </Container>
     </Box>
   );
 }
+
 export default Footer;

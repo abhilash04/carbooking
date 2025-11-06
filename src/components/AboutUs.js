@@ -16,10 +16,7 @@ import LayersRoundedIcon from "@mui/icons-material/LayersRounded";
 import SupportAgentRoundedIcon from "@mui/icons-material/SupportAgentRounded";
 import aboutus from "../../src/assets/bg-aboutus.png";
 
-/* ---------------------------------------------
-   One shared progress clock for all counters
-   progress goes 0 -> 1 with easing, then stops.
----------------------------------------------- */
+
 function useCountUpProgress({ duration = 1200, delay = 0 }) {
   const [progress, setProgress] = React.useState(0);
 
