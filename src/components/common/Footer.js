@@ -21,7 +21,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import DirectionsCarRoundedIcon from "@mui/icons-material/DirectionsCarRounded";
-import footerBg from "../../src/assets/bg-footer.png";
+import footerBg from "../../../src/assets/bg-footer.png";
 
 const BRAND_BLUE = "#1B1783";
 const BRAND_BLUE_DARK = "#15145F";
