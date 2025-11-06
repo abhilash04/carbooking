@@ -15,6 +15,7 @@ import {
   ListItemButton,
   ListItemText,
   Collapse,
+  useMediaQuery,
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
@@ -24,49 +25,17 @@ import logo from "../../src/assets/Logo.png";
 const BRAND_BLUE = "#2B22C9";
 const ACCENT_ORANGE = "#F39C12";
 
-const navItems = [
-  { label: "HOME", href: "#home", active: true },
-  {
-    label: "VEHICLE",
-    children: [
-      { label: "Car Collection", href: "#carcollection" },
-      { label: "Car Details", href: "#cardetails" },
-      { label: "Car Booking", href: "#carbooking" },
-    ],
-  },
-  {
-    label: "SERVICES",
-    children: [
-      { label: "Services", href: "#services" },
-      { label: "Service Details", href: "#servicedetails" },
-    ],
-  },
-  { label: "ABOUT", href: "#about" },
-  {
-    label: "PAGES",
-    children: [
-      { label: "Blog", href: "#blog" },
-      { label: "Single Post", href: "#singlepost" },
-      { label: "Contact Us", href: "#contactus" },
-      { label: "Team", href: "#team" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Error 404", href: "#error404" },
-    ],
-  },
-];
-
 export default function NavBar() {
-  // desktop dropdown anchors
   const [anchor, setAnchor] = React.useState({});
   const openMenu = (label, el) => setAnchor((p) => ({ ...p, [label]: el }));
   const closeMenu = (label) => setAnchor((p) => ({ ...p, [label]: null }));
 
-  // mobile drawer + collapses
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [mobileOpen, setMobileOpen] = React.useState({}); // { VEHICLE: true, ... }
-
+  const [mobileOpen, setMobileOpen] = React.useState({});
   const toggleMobileSection = (label) =>
     setMobileOpen((p) => ({ ...p, [label]: !p[label] }));
+
+  const isMobile = useMediaQuery("(max-width:900px)");
 
   return (
     <AppBar
@@ -80,7 +49,7 @@ export default function NavBar() {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters sx={{ minHeight: 72, gap: 2 }}>
-          {/* Left: Logo */}
+          {/* Logo */}
           <Stack direction="row" alignItems="center" spacing={1.25}>
             <Box
               component="img"
@@ -90,74 +59,154 @@ export default function NavBar() {
             />
           </Stack>
 
-          {/* Center: Desktop nav */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Stack
-              direction="row"
-              spacing={4}
-              justifyContent="center"
-              alignItems="center"
-              sx={{ height: "100%" }}
-            >
-              {navItems.map((item) =>
-                item.children ? (
-                  <Box key={item.label}>
-                    <Button
-                      endIcon={<KeyboardArrowDownRoundedIcon />}
-                      onClick={(e) => openMenu(item.label, e.currentTarget)}
-                      sx={{
-                        fontWeight: 700,
-                        color: "text.primary",
-                        "&:hover": { bgcolor: "transparent", color: BRAND_BLUE },
-                      }}
-                    >
-                      {item.label}
-                    </Button>
-                    <Menu
-                      anchorEl={anchor[item.label] || null}
-                      open={Boolean(anchor[item.label])}
-                      onClose={() => closeMenu(item.label)}
-                      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                      transformOrigin={{ vertical: "top", horizontal: "center" }}
-                    >
-                      {item.children.map((c) => (
-                        <MenuItem
-                          key={c.label}
-                          onClick={() => closeMenu(item.label)}
-                          component="a"
-                          href={c.href}
-                        >
-                          {c.label}
-                        </MenuItem>
-                      ))}
-                    </Menu>
-                  </Box>
-                ) : (
+          {/* Desktop Navigation */}
+          {!isMobile && (
+            <Box sx={{ flexGrow: 1 }}>
+              <Stack
+                direction="row"
+                spacing={4}
+                justifyContent="center"
+                alignItems="center"
+                sx={{ height: "100%" }}
+              >
+                {/* HOME */}
+                <Button
+                  href="#home"
+                  sx={{
+                    fontWeight: 700,
+                    color: ACCENT_ORANGE,
+                    "&:hover": { bgcolor: "transparent", color: BRAND_BLUE },
+                  }}
+                >
+                  HOME
+                </Button>
+
+                {/* VEHICLE */}
+                <Box>
                   <Button
-                    key={item.label}
-                    href={item.href}
+                    endIcon={<KeyboardArrowDownRoundedIcon />}
+                    onClick={(e) => openMenu("VEHICLE", e.currentTarget)}
                     sx={{
-                      fontWeight: 800,
-                      color: item.active ? ACCENT_ORANGE : "text.primary",
-                      "&:hover": { bgcolor: "transparent", color: BRAND_BLUE },
+                      fontWeight: 600,
+                      color: "text.primary",
+                      "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
                     }}
                   >
-                    {item.label}
+                    VEHICLE
                   </Button>
-                )
-              )}
-            </Stack>
-          </Box>
+                  <Menu
+                    anchorEl={anchor["VEHICLE"]}
+                    open={Boolean(anchor["VEHICLE"])}
+                    onClose={() => closeMenu("VEHICLE")}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                  >
+                    <MenuItem onClick={() => closeMenu("VEHICLE")} href="#carcollection">
+                      Car Collection
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("VEHICLE")} href="#cardetails">
+                      Car Details
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("VEHICLE")} href="#carbooking">
+                      Car Booking
+                    </MenuItem>
+                  </Menu>
+                </Box>
 
-          {/* Right: BOOK NOW (desktop) */}
-          <Box sx={{ display: { xs: "none", md: "block" } }}>
+                {/* SERVICES */}
+                <Box>
+                  <Button
+                    endIcon={<KeyboardArrowDownRoundedIcon />}
+                    onClick={(e) => openMenu("SERVICES", e.currentTarget)}
+                    sx={{
+                      fontWeight: 600,
+                      color: "text.primary",
+                      "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                    }}
+                  >
+                    SERVICES
+                  </Button>
+                  <Menu
+                    anchorEl={anchor["SERVICES"]}
+                    open={Boolean(anchor["SERVICES"])}
+                    onClose={() => closeMenu("SERVICES")}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                  >
+                    <MenuItem onClick={() => closeMenu("SERVICES")} href="#services">
+                      Services
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("SERVICES")} href="#servicedetails">
+                      Service Details
+                    </MenuItem>
+                  </Menu>
+                </Box>
+
+                {/* ABOUT */}
+                <Button
+                  href="#about"
+                  sx={{
+                    fontWeight: 600,
+                    color: "text.primary",
+                    "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                  }}
+                >
+                  ABOUT
+                </Button>
+
+                {/* PAGES */}
+                <Box>
+                  <Button
+                    endIcon={<KeyboardArrowDownRoundedIcon />}
+                    onClick={(e) => openMenu("PAGES", e.currentTarget)}
+                    sx={{
+                      fontWeight: 600,
+                      color: "text.primary",
+                      "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                    }}
+                  >
+                    PAGES
+                  </Button>
+                  <Menu
+                    anchorEl={anchor["PAGES"]}
+                    open={Boolean(anchor["PAGES"])}
+                    onClose={() => closeMenu("PAGES")}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                  >
+                    <MenuItem onClick={() => closeMenu("PAGES")} href="#blog">
+                      Blog
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("PAGES")} href="#singlepost">
+                      Single Post
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("PAGES")} href="#contactus">
+                      Contact Us
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("PAGES")} href="#team">
+                      Team
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("PAGES")} href="#faq">
+                      FAQ
+                    </MenuItem>
+                    <MenuItem onClick={() => closeMenu("PAGES")} href="#error404">
+                      Error 404
+                    </MenuItem>
+                  </Menu>
+                </Box>
+              </Stack>
+            </Box>
+          )}
+
+          {/* BOOK NOW (Desktop) */}
+          {!isMobile && (
             <Button
               variant="contained"
               disableElevation
               sx={{
                 bgcolor: BRAND_BLUE,
                 color: "#fff",
-                fontWeight: 800,
+                fontWeight: 700,
                 borderRadius: 1.25,
                 px: 2.5,
                 py: 1,
@@ -166,121 +215,156 @@ export default function NavBar() {
             >
               BOOK NOW
             </Button>
-          </Box>
+          )}
 
-          {/* Mobile hamburger */}
-          <IconButton
-            edge="end"
-            onClick={() => setDrawerOpen(true)}
-            sx={{ ml: "auto", display: { xs: "inline-flex", md: "none" } }}
-          >
-            <MenuRoundedIcon />
-          </IconButton>
+          {/* Mobile Hamburger */}
+          {isMobile && (
+            <IconButton
+              edge="end"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ ml: "auto" }}
+            >
+              <MenuRoundedIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </Container>
 
-      {/* Mobile Drawer with dropdowns */}
-      <Drawer
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        PaperProps={{ sx: { width: 300 } }}
-      >
-        <Box sx={{ p: 2 }}>
-          <Box
-            component="img"
-            src={logo}
-            alt="logo"
-            sx={{ height: 40, width: "auto", objectFit: "contain" }}
-          />
-        </Box>
-        <Divider />
+      {/* Mobile Drawer */}
+      {isMobile && (
+        <Drawer
+          anchor="left"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          PaperProps={{ sx: { width: 300 } }}
+        >
+          <Box sx={{ p: 2 }}>
+            <Box
+              component="img"
+              src={logo}
+              alt="logo"
+              sx={{ height: 40, width: "auto", objectFit: "contain" }}
+            />
+          </Box>
+          <Divider />
 
-        <List sx={{ p: 1 }}>
-          {navItems.map((item) => {
-            const hasChildren = !!item.children?.length;
-            const isOpen = !!mobileOpen[item.label];
+          <List sx={{ p: 1 }}>
+            {/* HOME */}
+            <ListItemButton href="#home" onClick={() => setDrawerOpen(false)}>
+              <ListItemText
+                primary="HOME"
+                primaryTypographyProps={{
+                  fontWeight: 700,
+                  color: ACCENT_ORANGE,
+                }}
+              />
+            </ListItemButton>
 
-            if (!hasChildren) {
-              return (
-                <Box key={item.label}>
-                  <ListItemButton
-                    component="a"
-                    href={item.href || "#"}
-                    sx={{ borderRadius: 1 }}
-                    onClick={() => setDrawerOpen(false)}
-                  >
-                    <ListItemText
-                      primary={item.label}
-                      primaryTypographyProps={{
-                        fontWeight: item.active ? 800 : 700,
-                        color: item.active ? ACCENT_ORANGE : "inherit",
-                      }}
-                    />
-                  </ListItemButton>
-                </Box>
-              );
-            }
-
-            return (
-              <Box key={item.label}>
-                {/* Parent row with expand icon */}
-                <ListItemButton
-                  onClick={() => toggleMobileSection(item.label)}
-                  sx={{ borderRadius: 1 }}
-                >
-                  <ListItemText
-                    primary={item.label}
-                    primaryTypographyProps={{ fontWeight: 700 }}
-                  />
-                  <ExpandMoreRoundedIcon
-                    sx={{
-                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      transition: "transform .2s",
-                    }}
-                  />
+            {/* VEHICLE */}
+            <ListItemButton onClick={() => toggleMobileSection("VEHICLE")}>
+              <ListItemText primary="VEHICLE" primaryTypographyProps={{ fontWeight: 600 }} />
+              <ExpandMoreRoundedIcon
+                sx={{
+                  transform: mobileOpen["VEHICLE"] ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform .2s",
+                }}
+              />
+            </ListItemButton>
+            <Collapse in={mobileOpen["VEHICLE"]} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton href="#carcollection" sx={{ pl: 4 }}>
+                  <ListItemText primary="Car Collection" />
                 </ListItemButton>
+                <ListItemButton href="#cardetails" sx={{ pl: 4 }}>
+                  <ListItemText primary="Car Details" />
+                </ListItemButton>
+                <ListItemButton href="#carbooking" sx={{ pl: 4 }}>
+                  <ListItemText primary="Car Booking" />
+                </ListItemButton>
+              </List>
+            </Collapse>
 
-                {/* Collapsible children */}
-                <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                  <List component="div" disablePadding>
-                    {item.children.map((c) => (
-                      <ListItemButton
-                        key={c.label}
-                        component="a"
-                        href={c.href}
-                        sx={{ pl: 4, borderRadius: 1 }}
-                        onClick={() => setDrawerOpen(false)}
-                      >
-                        <ListItemText primary={c.label} />
-                      </ListItemButton>
-                    ))}
-                  </List>
-                </Collapse>
-              </Box>
-            );
-          })}
-        </List>
+            {/* SERVICES */}
+            <ListItemButton onClick={() => toggleMobileSection("SERVICES")}>
+              <ListItemText primary="SERVICES" primaryTypographyProps={{ fontWeight: 600 }} />
+              <ExpandMoreRoundedIcon
+                sx={{
+                  transform: mobileOpen["SERVICES"] ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform .2s",
+                }}
+              />
+            </ListItemButton>
+            <Collapse in={mobileOpen["SERVICES"]} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton href="#services" sx={{ pl: 4 }}>
+                  <ListItemText primary="Services" />
+                </ListItemButton>
+                <ListItemButton href="#servicedetails" sx={{ pl: 4 }}>
+                  <ListItemText primary="Service Details" />
+                </ListItemButton>
+              </List>
+            </Collapse>
 
-        <Box sx={{ p: 2, mt: "auto" }}>
-          <Button
-            fullWidth
-            variant="contained"
-            disableElevation
-            sx={{
-              bgcolor: BRAND_BLUE,
-              color: "#fff",
-              fontWeight: 800,
-              borderRadius: 1.25,
-              py: 1.1,
-              "&:hover": { bgcolor: "#231cab" },
-            }}
-            onClick={() => setDrawerOpen(false)}
-          >
-            BOOK NOW
-          </Button>
-        </Box>
-      </Drawer>
+            {/* ABOUT */}
+            <ListItemButton href="#about" onClick={() => setDrawerOpen(false)}>
+              <ListItemText
+                primary="ABOUT"
+                primaryTypographyProps={{ fontWeight: 700 }}
+              />
+            </ListItemButton>
+
+            {/* PAGES */}
+            <ListItemButton onClick={() => toggleMobileSection("PAGES")}>
+              <ListItemText primary="PAGES" primaryTypographyProps={{ fontWeight: 600 }} />
+              <ExpandMoreRoundedIcon
+                sx={{
+                  transform: mobileOpen["PAGES"] ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform .2s",
+                }}
+              />
+            </ListItemButton>
+            <Collapse in={mobileOpen["PAGES"]} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton href="#blog" sx={{ pl: 4 }}>
+                  <ListItemText primary="Blog" />
+                </ListItemButton>
+                <ListItemButton href="#singlepost" sx={{ pl: 4 }}>
+                  <ListItemText primary="Single Post" />
+                </ListItemButton>
+                <ListItemButton href="#contactus" sx={{ pl: 4 }}>
+                  <ListItemText primary="Contact Us" />
+                </ListItemButton>
+                <ListItemButton href="#team" sx={{ pl: 4 }}>
+                  <ListItemText primary="Team" />
+                </ListItemButton>
+                <ListItemButton href="#faq" sx={{ pl: 4 }}>
+                  <ListItemText primary="FAQ" />
+                </ListItemButton>
+                <ListItemButton href="#error404" sx={{ pl: 4 }}>
+                  <ListItemText primary="Error 404" />
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </List>
+
+          <Box sx={{ p: 2 }}>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{
+                bgcolor: BRAND_BLUE,
+                color: "#fff",
+                fontWeight: 700,
+                borderRadius: 1.25,
+                py: 1.1,
+                "&:hover": { bgcolor: "#231cab" },
+              }}
+            >
+              BOOK NOW
+            </Button>
+          </Box>
+        </Drawer>
+      )}
     </AppBar>
   );
 }

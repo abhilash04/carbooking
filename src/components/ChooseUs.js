@@ -9,6 +9,8 @@ import {
   Card,
   CardContent,
   Link as MuiLink,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
 import AssignmentTurnedInRoundedIcon from "@mui/icons-material/AssignmentTurnedInRounded";
@@ -117,6 +119,11 @@ function Tile({
 }
 
 export default function ChooseUs() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  console.log("isMobile:", isMobile); // ✅ You can remove this later
+
   return (
     <Box component="section" sx={{ py: { xs: 6, md: 9 }, bgcolor: "#FFFFFF" }}>
       <Container maxWidth="lg">

@@ -9,11 +9,13 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import Pricing from './components/Pricing'
 import Hero from './components/Hero'
+import Banner from './components/Banner'
 const App = () => {
   return (
     <div>
       <PromoStrip />
       <Header />
+      <Banner />
       <AboutUs />
       <Services />
       <Hero />

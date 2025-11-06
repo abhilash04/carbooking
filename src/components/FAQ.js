@@ -8,6 +8,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -90,6 +92,11 @@ function FaqItem({ q, a, defaultExpanded = false }) {
 }
 
 export default function FAQ() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  console.log("isMobile:", isMobile); // ✅ You can remove this later
+
   return (
     <Box component="section" sx={{ py: { xs: 6, md: 10 }, bgcolor: "#fff" }}>
       <Container maxWidth="lg">
@@ -177,9 +184,9 @@ export default function FAQ() {
                   alt="Autovia"
                   sx={{
                     position: "absolute",
-                    top: { xs: 1, sm: 16,md:1 },
+                    top: { xs: 1, sm: 16, md: 1 },
                     right: { xs: 6, sm: 10 },
-                    height: { xs: "14%", sm: "12%", md: "17%" },
+                    height: { xs: "10%", sm: "12%", md: "17%" },
                     maxHeight: { xs: 200, sm: 240, md: 300 },
                     objectFit: "contain",
                     pointerEvents: "none",
