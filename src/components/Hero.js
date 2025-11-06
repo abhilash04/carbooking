@@ -4,92 +4,57 @@ import { styled } from "@mui/system";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import heroImg from "../assets/hero.png";
 
-const PARALLAX_STRENGTH = 0.25;
 const ACCENT_GOLD = "#D2C067";
 
 const HeroRoot = styled(Box)({
   position: "relative",
   overflow: "hidden",
   width: "100%",
+  height: "80vh",             // reduced section height
+  minHeight: "500px",
+  backgroundColor: "#000",    // fixes grey gap
   color: "#fff",
-  transition: "height 0.5s ease",
 });
 
 function Hero() {
   const wrapRef = React.useRef(null);
   const imgRef = React.useRef(null);
-  const [heroHeight, setHeroHeight] = React.useState(80);
   const rafRef = React.useRef(0);
 
-  // Parallax
   React.useEffect(() => {
     const el = wrapRef.current;
     const img = imgRef.current;
     if (!el || !img) return;
 
-    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
-
-    const update = () => {
-      const rect = el.getBoundingClientRect();
-      const viewportH = window.innerHeight;
-      const heroCenter = rect.top + rect.height / 2;
-      const viewportCenter = viewportH / 2;
-      const delta = heroCenter - viewportCenter;
-      const translate = clamp(-delta * PARALLAX_STRENGTH, -100, 100);
-      img.style.transform = `translate3d(-50%, calc(-50% + ${translate}px), 0) scale(1.05)`;
-    };
-
-    const onScrollOrResize = () => {
+    const onScroll = () => {
       cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(update);
-    };
+      rafRef.current = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
 
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
-    onScrollOrResize();
+        // Calculate parallax motion
+        const scrollProgress = 1 - rect.top / windowHeight;
+        const clamped = Math.min(Math.max(scrollProgress, 0), 1);
+        const translateY = (clamped - 0.5) * 200; // parallax range
 
-    return () => {
-      cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("resize", onScrollOrResize);
-    };
-  }, []);
-
-  // Decrease height on zoom out (never increase on zoom in)
-  React.useEffect(() => {
-    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
-
-    const BASE_VH = 80;
-    const MIN_VH = 40;
-    const baseRatio = window.devicePixelRatio || 1;
-    const baseWidth = window.innerWidth || 1;
-
-    let raf = 0;
-    const updateHeight = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const ratioScale = (window.devicePixelRatio || 1) / baseRatio;
-        const widthScale = (window.innerWidth || 1) / baseWidth;
-        // consider DPR scale; cap at 1 so we never grow on zoom in
-        const zoomScale = Math.min(ratioScale, 1);
-        const target = clamp(BASE_VH * zoomScale, MIN_VH, BASE_VH);
-        setHeroHeight(target);
+        img.style.transform = `translate3d(-50%, calc(-50% + ${translateY}px), 0) scale(1.05)`;
       });
     };
 
-    window.addEventListener("resize", updateHeight);
-    window.addEventListener("wheel", updateHeight, { passive: true });
-    updateHeight();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    onScroll();
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", updateHeight);
-      window.removeEventListener("wheel", updateHeight);
+      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
   return (
-    <HeroRoot ref={wrapRef} sx={{ height: `${heroHeight}vh`, minHeight: "40vh" }}>
+    <HeroRoot ref={wrapRef}>
+      {/* Background Image */}
       <Box
         ref={imgRef}
         component="img"
@@ -100,16 +65,25 @@ function Hero() {
           top: "50%",
           left: "50%",
           transform: "translate3d(-50%, -50%, 0) scale(1.05)",
-          width: "100%",
-          height: "120%",
+          width: "105%",      // ensures full width coverage
+          height: "130%",     // taller to prevent gaps during scroll
           objectFit: "cover",
           pointerEvents: "none",
           userSelect: "none",
+          willChange: "transform",
         }}
       />
 
-      <Box sx={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)" }} />
+      {/* Overlay */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.45)",
+        }}
+      />
 
+      {/* Content */}
       <Container
         maxWidth="lg"
         sx={{
