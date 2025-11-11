@@ -43,10 +43,10 @@ const steps = [
 
 function Work() {
   return (
-    <Box component="section" sx={{ py: { xs: 6, md: 8 }, bgcolor: "#fff" }}>
+    <Box component="section" sx={{ py: { xs: 6, md: 1}, bgcolor: "#fff" }}>
       <Container maxWidth="lg">
         {/* Header */}
-        <Stack alignItems="center" spacing={2.5} sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
+        <Stack alignItems="center" spacing={2.5} sx={{ textAlign: "center", mb: { xs: 4, md: 1 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Box
               sx={{
