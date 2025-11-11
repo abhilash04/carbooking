@@ -118,14 +118,14 @@ function Tile({
   );
 }
 
-export default function ChooseUs() {
+function ChooseUs() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   console.log("isMobile:", isMobile); // ✅ You can remove this later
 
   return (
-    <Box component="section" sx={{ py: { xs: 6, md: 9 }, bgcolor: "#FFFFFF" }}>
+    <Box component="section" sx={{ p: { xs: 2, md: 4 }, bgcolor: "#FFFFFF" }}>
       <Container maxWidth="lg">
         {/* Header */}
         <Stack
@@ -240,3 +240,4 @@ export default function ChooseUs() {
     </Box>
   );
 }
+export default ChooseUs;

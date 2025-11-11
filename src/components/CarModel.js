@@ -50,6 +50,8 @@ const CITY_CARS = [
   { id: "ct-6", title: "Mini Bus", charges: "₹3,809/-", limit: "35 Km", ac: "Both", pax: "21+1", bg, img: miniBus },
   { id: "ct-7", title: "Innova Crysta", charges: "₹2,409/-", limit: "35 Km", ac: "AC", pax: "6+1", bg, img: crysta },
   { id: "ct-8", title: "Tavera", charges: "₹1,909/-", limit: "35 Km", ac: "Non-AC", pax: "8+1", bg, img: tavera },
+  { id: "ap-7", title: "Bus", charges: "₹8,009/-", limit: "Outright", ac: "Both", pax: "50+1", bg, img: bus },
+
 ];
 
 const OUTSTATION_CARS = [
@@ -60,6 +62,9 @@ const OUTSTATION_CARS = [
   { id: "os-5", title: "Mini Bus", charges: "₹28/km", limit: "Outstation", ac: "Both", pax: "21+1", bg, img: miniBus },
   { id: "os-6", title: "Bus", charges: "₹34/km", limit: "Outstation", ac: "Both", pax: "50+1", bg, img: bus },
   { id: "os-7", title: "Luxury", charges: "₹30/km", limit: "Outstation", ac: "AC", pax: "4+1", bg, img: luxury },
+  { id: "ct-3", title: "Innova", charges: "₹1,969/-", limit: "35 Km", ac: "AC", pax: "7+1", bg, img: innova },
+  { id: "ct-8", title: "Tavera", charges: "₹1,909/-", limit: "35 Km", ac: "Non-AC", pax: "8+1", bg, img: tavera },
+
 ];
 
 /* ---------- Specs Row ---------- */
@@ -251,7 +256,7 @@ const CarModels = () => {
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", mt: { xs: 4, md: 8 }, mb: isMobile ? 3 : 5 }}>
           <Typography variant="h6" sx={{ fontWeight: 800 }}>
-            Lets Go With Us!
+            /// Lets Go With Us!
           </Typography>
           <Typography variant={isMobile ? "h5" : "h4"} sx={{ fontWeight: 800 }}>
             Choose Your Package to Ride!

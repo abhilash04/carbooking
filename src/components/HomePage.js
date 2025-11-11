@@ -20,14 +20,14 @@ const HomePage = () => {
       <PromoStrip />
       <Header />
       <Banner />
+      <ChooseUs />
+      <Services />
+      <Work />
       <CarModel />
       <PlacesInKarnataka />
       <PlacesInSouth />
-      <Services />
       <AboutUs />
       <Hero />
-      <ChooseUs />
-      <Work />
       <Pricing />
       <FAQ />
       <Footer />
