@@ -10,17 +10,24 @@ import Pricing from "./Pricing";
 import FAQ from "./FAQ";
 import Footer from "./common/Footer";
 import Header from "./common/Header";
+import CarModel from "./CarModel";
+import PlacesInKarnataka from "./PlacesInKarnataka";
+import PlacesInSouth from "./PlacesInSouthIndia";
+
 const HomePage = () => {
   return (
     <Grid>
       <PromoStrip />
       <Header />
       <Banner />
+      <ChooseUs />
       <Services />
+      <Work />
+      <CarModel />
+      <PlacesInKarnataka />
+      <PlacesInSouth />
       <AboutUs />
       <Hero />
-      <ChooseUs />
-      <Work />
       <Pricing />
       <FAQ />
       <Footer />

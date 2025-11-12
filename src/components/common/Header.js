@@ -73,9 +73,26 @@ export default function Header() {
                 <Button
                   href="#home"
                   sx={{
-                    fontWeight: 700,
-                    color: ACCENT_ORANGE,
-                    "&:hover": { bgcolor: "transparent", color: BRAND_BLUE },
+                    fontWeight: 600,
+                    color: "text.primary",
+                    position: "relative",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      left: 0,
+                      bottom: -4, // space below text
+                      width: 0,
+                      height: "2px",
+                      bgcolor: "#F39C12",
+                      transition: "width 0.3s ease",
+                    },
+                    "&:hover::after": {
+                      width: "100%", // underline appears
+                    },
+                    "&:hover": {
+                      color: "#F39C12",
+                      bgcolor: "transparent",
+                    },
                   }}
                 >
                   HOME
@@ -89,7 +106,24 @@ export default function Header() {
                     sx={{
                       fontWeight: 600,
                       color: "text.primary",
-                      "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                      position: "relative",
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        bottom: -4, // space below text
+                        width: 0,
+                        height: "2px",
+                        bgcolor: "#F39C12",
+                        transition: "width 0.3s ease",
+                      },
+                      "&:hover::after": {
+                        width: "100%", // underline appears
+                      },
+                      "&:hover": {
+                        color: "#F39C12",
+                        bgcolor: "transparent",
+                      },
                     }}
                   >
                     VEHICLE
@@ -101,13 +135,22 @@ export default function Header() {
                     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                     transformOrigin={{ vertical: "top", horizontal: "center" }}
                   >
-                    <MenuItem onClick={() => closeMenu("VEHICLE")} href="#carcollection">
+                    <MenuItem
+                      onClick={() => closeMenu("VEHICLE")}
+                      href="#carcollection"
+                    >
                       Car Collection
                     </MenuItem>
-                    <MenuItem onClick={() => closeMenu("VEHICLE")} href="#cardetails">
+                    <MenuItem
+                      onClick={() => closeMenu("VEHICLE")}
+                      href="#cardetails"
+                    >
                       Car Details
                     </MenuItem>
-                    <MenuItem onClick={() => closeMenu("VEHICLE")} href="#carbooking">
+                    <MenuItem
+                      onClick={() => closeMenu("VEHICLE")}
+                      href="#carbooking"
+                    >
                       Car Booking
                     </MenuItem>
                   </Menu>
@@ -121,7 +164,24 @@ export default function Header() {
                     sx={{
                       fontWeight: 600,
                       color: "text.primary",
-                      "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                      position: "relative",
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        bottom: -4, // space below text
+                        width: 0,
+                        height: "2px",
+                        bgcolor: "#F39C12",
+                        transition: "width 0.3s ease",
+                      },
+                      "&:hover::after": {
+                        width: "100%", // underline appears
+                      },
+                      "&:hover": {
+                        color: "#F39C12",
+                        bgcolor: "transparent",
+                      },
                     }}
                   >
                     SERVICES
@@ -133,10 +193,16 @@ export default function Header() {
                     anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                     transformOrigin={{ vertical: "top", horizontal: "center" }}
                   >
-                    <MenuItem onClick={() => closeMenu("SERVICES")} href="#services">
+                    <MenuItem
+                      onClick={() => closeMenu("SERVICES")}
+                      href="#services"
+                    >
                       Services
                     </MenuItem>
-                    <MenuItem onClick={() => closeMenu("SERVICES")} href="#servicedetails">
+                    <MenuItem
+                      onClick={() => closeMenu("SERVICES")}
+                      href="#servicedetails"
+                    >
                       Service Details
                     </MenuItem>
                   </Menu>
@@ -148,7 +214,24 @@ export default function Header() {
                   sx={{
                     fontWeight: 600,
                     color: "text.primary",
-                    "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                    position: "relative",
+                    "&::after": {
+                      content: '""',
+                      position: "absolute",
+                      left: 0,
+                      bottom: -4, // space below text
+                      width: 0,
+                      height: "2px",
+                      bgcolor: "#F39C12",
+                      transition: "width 0.3s ease",
+                    },
+                    "&:hover::after": {
+                      width: "100%", // underline appears
+                    },
+                    "&:hover": {
+                      color: "#F39C12",
+                      bgcolor: "transparent",
+                    },
                   }}
                 >
                   ABOUT
@@ -162,7 +245,24 @@ export default function Header() {
                     sx={{
                       fontWeight: 600,
                       color: "text.primary",
-                      "&:hover": { bgcolor: "transparent", color: ACCENT_ORANGE },
+                      position: "relative",
+                      "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        left: 0,
+                        bottom: -4, // space below text
+                        width: 0,
+                        height: "2px",
+                        bgcolor: "#F39C12",
+                        transition: "width 0.3s ease",
+                      },
+                      "&:hover::after": {
+                        width: "100%", // underline appears
+                      },
+                      "&:hover": {
+                        color: "#F39C12",
+                        bgcolor: "transparent",
+                      },
                     }}
                   >
                     PAGES
@@ -177,10 +277,16 @@ export default function Header() {
                     <MenuItem onClick={() => closeMenu("PAGES")} href="#blog">
                       Blog
                     </MenuItem>
-                    <MenuItem onClick={() => closeMenu("PAGES")} href="#singlepost">
+                    <MenuItem
+                      onClick={() => closeMenu("PAGES")}
+                      href="#singlepost"
+                    >
                       Single Post
                     </MenuItem>
-                    <MenuItem onClick={() => closeMenu("PAGES")} href="#contactus">
+                    <MenuItem
+                      onClick={() => closeMenu("PAGES")}
+                      href="#contactus"
+                    >
                       Contact Us
                     </MenuItem>
                     <MenuItem onClick={() => closeMenu("PAGES")} href="#team">
@@ -189,7 +295,10 @@ export default function Header() {
                     <MenuItem onClick={() => closeMenu("PAGES")} href="#faq">
                       FAQ
                     </MenuItem>
-                    <MenuItem onClick={() => closeMenu("PAGES")} href="#error404">
+                    <MenuItem
+                      onClick={() => closeMenu("PAGES")}
+                      href="#error404"
+                    >
                       Error 404
                     </MenuItem>
                   </Menu>
@@ -262,10 +371,15 @@ export default function Header() {
 
             {/* VEHICLE */}
             <ListItemButton onClick={() => toggleMobileSection("VEHICLE")}>
-              <ListItemText primary="VEHICLE" primaryTypographyProps={{ fontWeight: 600 }} />
+              <ListItemText
+                primary="VEHICLE"
+                primaryTypographyProps={{ fontWeight: 600 }}
+              />
               <ExpandMoreRoundedIcon
                 sx={{
-                  transform: mobileOpen["VEHICLE"] ? "rotate(180deg)" : "rotate(0deg)",
+                  transform: mobileOpen["VEHICLE"]
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
                   transition: "transform .2s",
                 }}
               />
@@ -286,10 +400,15 @@ export default function Header() {
 
             {/* SERVICES */}
             <ListItemButton onClick={() => toggleMobileSection("SERVICES")}>
-              <ListItemText primary="SERVICES" primaryTypographyProps={{ fontWeight: 600 }} />
+              <ListItemText
+                primary="SERVICES"
+                primaryTypographyProps={{ fontWeight: 600 }}
+              />
               <ExpandMoreRoundedIcon
                 sx={{
-                  transform: mobileOpen["SERVICES"] ? "rotate(180deg)" : "rotate(0deg)",
+                  transform: mobileOpen["SERVICES"]
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
                   transition: "transform .2s",
                 }}
               />
@@ -315,10 +434,15 @@ export default function Header() {
 
             {/* PAGES */}
             <ListItemButton onClick={() => toggleMobileSection("PAGES")}>
-              <ListItemText primary="PAGES" primaryTypographyProps={{ fontWeight: 600 }} />
+              <ListItemText
+                primary="PAGES"
+                primaryTypographyProps={{ fontWeight: 600 }}
+              />
               <ExpandMoreRoundedIcon
                 sx={{
-                  transform: mobileOpen["PAGES"] ? "rotate(180deg)" : "rotate(0deg)",
+                  transform: mobileOpen["PAGES"]
+                    ? "rotate(180deg)"
+                    : "rotate(0deg)",
                   transition: "transform .2s",
                 }}
               />
