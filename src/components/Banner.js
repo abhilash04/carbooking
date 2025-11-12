@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -8,6 +8,7 @@ import {
   Grid,
   useMediaQuery,
   InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -19,12 +20,25 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 
 import banner1 from "../assets/banner-1.png";
 import banner2 from "../assets/banner-2.jpg";
-import banner3 from "../assets/banner-3.png";
-import { motion } from "framer-motion";
+import car1 from "../assets/banner-3.png";
+import car2 from "../assets/car1-new.bf6949f6da77a8c7c742.webp";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+import { motion, AnimatePresence } from "framer-motion";
 const Banner = () => {
   const theme = useTheme();
   const [count, setCount] = React.useState(0);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
 
   React.useEffect(() => {
     let start = 0;
@@ -46,6 +60,35 @@ const Banner = () => {
     requestAnimationFrame(animate);
   }, []);
 
+  const slides = [
+    {
+      id: 1,
+      title: "Your Smoothest Ever Car Rental Experience",
+      description:
+        "Book from a wide range of luxury and budget vehicles ready to ride anywhere, anytime.",
+      count: 120,
+      image: car1,
+    },
+    {
+      id: 2,
+      title: "Drive Your Dream Car Today",
+      description:
+        "Choose from top models and get hassle-free delivery and pickup at your location.",
+      count: 85,
+      image: car2,
+    },
+    {
+      id: 3,
+      title: "Comfort, Style, and Reliability",
+      description:
+        "Experience top-notch performance and comfort on every ride with our premium fleet.",
+      count: 150,
+      image: car1,
+    },
+  ];
+
+  const currentSlide = slides[currentIndex];
+
   return (
     <>
       {/* Banner Section */}
@@ -54,7 +97,7 @@ const Banner = () => {
         <Box
           sx={{
             position: "relative",
-            height: "100vh",
+            height: isMobile? "65vh":"100vh",
             backgroundImage: `url(${banner2})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -75,8 +118,23 @@ const Banner = () => {
               zIndex: 1,
             }}
           />
-
-          {/* Content Wrapper */}
+          {/* Left Arrow */}
+          {!isMobile && (
+            <IconButton
+              onClick={handlePrev}
+              sx={{
+                position: "absolute",
+                left: 0,
+                zIndex: 10,
+                bgcolor: "rgba(0,0,0,0.3)",
+                color: "#fff",
+                "&:hover": { bgcolor: "rgba(0,0,0,0.5)" },
+              }}
+            >
+              <ArrowBackIosNewIcon />
+            </IconButton>
+          )}
+          {/* Content Wrapper */}(
           <Box
             sx={{
               position: "relative",
@@ -87,95 +145,151 @@ const Banner = () => {
               px: isMobile ? 2 : 0,
               display: "flex",
               flexDirection: isMobile ? "column" : "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              overflow: "hidden",
             }}
           >
-            {/* Left Section */}
-            <Box
+            {/* Slide Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide.id}
+                initial={{ opacity: 0, x: -80 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 80 }}
+                transition={{ duration: 0.7 }}
+                style={{
+                  width: isMobile ? "100%" : "40%",
+                  color: "white",
+                  textAlign: "left",
+                }}
+              >
+                {!isMobile && (
+                  <Button
+                    variant="contained"
+                    disableElevation
+                    sx={{
+                      bgcolor: "rgba(0, 0, 0, 0.25)",
+                      backdropFilter: "blur(8px)",
+                      WebkitBackdropFilter: "blur(8px)",
+                      textTransform: "none",
+                      fontSize: 20,
+                      fontWeight: 600,
+                      color: "#fff",
+                      borderRadius: "8px",
+                      px: 2.5,
+                      py: 1,
+                      mb: 4,
+                      mt: -4,
+                      transition:
+                        "background .3s,border .3s,border-radius .3s,box-shadow .3s,transform .4s",
+                      "&:hover": {
+                        bgcolor: "rgba(0, 0, 0, 0.35)",
+                        transform: "scale(1.03)",
+                      },
+                    }}
+                  >
+                    {count}+ Vehicles Ready to Ride
+                  </Button>
+                )}
+                <Typography
+                  sx={{
+                    fontWeight: 700,
+                    mb: 4,
+                    lineHeight: isMobile? "42px":"56px",
+                    fontSize: isMobile? "36px":"42px",
+                  }}
+                >
+                  {currentSlide.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    opacity: 1,
+                    lineHeight: "24px",
+                    fontSize: "18px",
+                  }}
+                >
+                  {currentSlide.description}
+                </Typography>
+              </motion.div>
+
+              {/* Car Image */}
+              <motion.img
+                key={currentSlide.image}
+                src={currentSlide.image}
+                alt="car"
+                initial={{ x: 200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -200, opacity: 0 }}
+                transition={{
+                  duration: 0.9,
+                  ease: [0.25, 0.1, 0.25, 1],
+                  type: "spring",
+                  stiffness: 60,
+                }}
+                style={{
+                  width: isMobile ? "100%" : "55%",
+                  position: "relative",
+                  marginTop: isMobile ? 20 : 0,
+                  transform: isMobile ? "scale(1.15)" : "none",
+                  objectFit: "contain",
+                  transition: "transform 0.3s ease",
+                  zIndex: 2,
+                }}
+              />
+            </AnimatePresence>
+
+            {/* Mobile arrows below image */}
+            {isMobile && (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: 2,
+                  mt: 3,
+                }}
+              >
+                <IconButton
+                  onClick={handlePrev}
+                  sx={{
+                    bgcolor: "rgba(0,0,0,0.3)",
+                    color: "#fff",
+                    "&:hover": { bgcolor: "rgba(0,0,0,0.5)" },
+                  }}
+                >
+                  <ArrowBackIosNewIcon />
+                </IconButton>
+                <IconButton
+                  onClick={handleNext}
+                  sx={{
+                    bgcolor: "rgba(0,0,0,0.3)",
+                    color: "#fff",
+                    "&:hover": { bgcolor: "rgba(0,0,0,0.5)" },
+                  }}
+                >
+                  <ArrowForwardIosIcon />
+                </IconButton>
+              </Box>
+            )}
+          </Box>
+          );
+          {/* Right Arrow */}
+          {!isMobile && (
+            <IconButton
+              onClick={handleNext}
               sx={{
-                color: "white",
-                width: isMobile ? "100%" : "40%",
-                textAlign: "left",
-                justifyContent: "space-between",
+                position: "absolute",
+                right: 0,
+                zIndex: 10,
+                bgcolor: "rgba(0,0,0,0.3)",
+                color: "#fff",
+                "&:hover": { bgcolor: "rgba(0,0,0,0.5)" },
               }}
             >
-              <Button
-                variant="contained"
-                disableElevation
-                sx={{
-                  bgcolor: "rgba(0, 0, 0, 0.25)",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                  textTransform: "none",
-                  fontSize: 20,
-                  fontWeight: 600,
-                  color: "#fff",
-                  borderRadius: "8px",
-                  px: 2.5,
-                  py: 1,
-                  mb: 4,
-                  mt: -4,
-                  transition:
-                    "background .3s,border .3s,border-radius .3s,box-shadow .3s,transform var(--e-transform-transition-duration,.4s)",
-                  "&:hover": {
-                    bgcolor: "rgba(0, 0, 0, 0.35)",
-                    transform: "scale(1.03)",
-                  },
-                }}
-              >
-                {count}+ Vehicles Ready to Ride
-              </Button>
-
-              <Typography
-                sx={{
-                  fontWeight: 700,
-                  mb: 4,
-                  lineHeight: "56px",
-                  fontSize: "42px",
-                }}
-              >
-                Your Smoothest Ever Car Rental Experience
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  opacity: 1,
-                  lineHeight: "24px",
-                  fontSize: "18px",
-                }}
-              >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Typography>
-            </Box>
-
-            {/* Right Section - Car Image */}
-            {/* {!isMobile && ( */}
-            <Box
-              component={motion.img}
-              src={banner3}
-              alt="car"
-              initial={{ x: 500, opacity: 0 }} // start off-screen right
-              animate={{ x: 0, opacity: 1 }} // end at original position
-              transition={{
-                duration: 2, // smooth duration
-                ease: [0.25, 0.1, 0.25, 1], // smooth curve easing
-                type: "spring", // natural spring motion
-                stiffness: 50, // control spring intensity
-              }}
-              sx={{
-                width: isMobile ? "100%" : "60%",
-                position: "relative",
-                mt: isMobile ? 10 : 0,
-                transform: isMobile ? "scale(1.2)" : "none",
-                transformOrigin: "center",
-                objectFit: "contain",
-                transition: "transform 0.3s ease",
-                zIndex: 2,
-              }}
-            />
-            {/* )} */}
-          </Box>
-
+              <ArrowForwardIosIcon />
+            </IconButton>
+          )}
           {/* Floating Form (only for Desktop) */}
           {!isMobile && (
             <Box
@@ -184,7 +298,7 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }} // fade in + lift up
               transition={{
                 duration: 2,
-                ease: "easeOut", 
+                ease: "easeOut",
               }}
               sx={{
                 position: "absolute",
@@ -350,6 +464,7 @@ const Banner = () => {
             boxShadow: 2,
             p: 3,
             mt: 5,
+            mx: "auto",
           }}
         >
           <Typography

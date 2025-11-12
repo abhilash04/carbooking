@@ -1,3 +1,4 @@
+
 // ChooseUs.jsx
 import * as React from "react";
 import {
@@ -28,7 +29,7 @@ function Tile({
   icon,
   title,
   text,
-  variant = "light", // 'light' | 'orange' | 'blue'
+  variant = "light", 
 }) {
   const isOrange = variant === "orange";
   const isBlue = variant === "blue";
@@ -122,10 +123,10 @@ function ChooseUs() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  console.log("isMobile:", isMobile); // ✅ You can remove this later
+  console.log("isMobile:", isMobile); 
 
   return (
-    <Box component="section" sx={{ p: { xs: 2, md: 4 }, bgcolor: "#FFFFFF" }}>
+    <Box component="section" sx={{ mt:{ xs: 4, md: 15 },py: 4, bgcolor: "#FFFFFF" }}>
       <Container maxWidth="lg">
         {/* Header */}
         <Stack

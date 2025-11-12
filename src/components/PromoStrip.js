@@ -19,7 +19,7 @@ function PromoStrip() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        py: { xs: 0.75, sm: 1 }, 
+        py: { xs: 0.75, sm: 0.8 }, 
       }}
     >
       <Container maxWidth="lg">
