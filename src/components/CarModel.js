@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-/* ===== Replace these with your asset paths ===== */
 import bg from "../../src/assets/pricing-bg.jpg";
 import sedan from "../../src/assets/sedan.png";
 import tavera from "../../src/assets/tavera.png";
@@ -252,9 +251,9 @@ const CarModels = () => {
       : "Reliable vehicles for long trips and intercity journeys.";
 
   return (
-    <Box sx={{ bgcolor: "#f5f6f8", mt: { xs: 6, md: 14 }, pb: { xs: 5, md: 8 } }}>
+    <Box sx={{ bgcolor: "#f5f6f8",py: 5 }}>
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: "center", mt: { xs: 4, md: 8 }, mb: isMobile ? 3 : 5 }}>
+        <Box sx={{ textAlign: "center",}}>
           <Typography variant="h6" sx={{ fontWeight: 800 }}>
             /// Lets Go With Us!
           </Typography>

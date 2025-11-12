@@ -28,7 +28,7 @@ const HomePage = () => {
       <PlacesInSouth />
       <AboutUs />
       <Hero />
-      <Pricing />
+      {/* <Pricing /> */}
       <FAQ />
       <Footer />
     </Grid>

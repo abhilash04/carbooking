@@ -137,7 +137,6 @@ function Services() {
         <Box
           sx={{
             bgcolor: "white",
-            height: "115px",
             width: "100%",
           }}
         >
