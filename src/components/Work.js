@@ -43,15 +43,13 @@ const steps = [
 
 function Work() {
   return (
-    <Box component="section" sx={{ py: { xs: 6, md: 1}, bgcolor: "#fff" }}>
+    <Box component="section" sx={{ py: { xs: 6, md: 4}, bgcolor: "#fff" }}>
       <Container maxWidth="lg">
         {/* Header */}
         <Stack alignItems="center" spacing={2.5} sx={{ textAlign: "center", mb: { xs: 4, md: 1 } }}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <Box
               sx={{
-                width: 26,
-                height: 26,
                 borderRadius: "50%",
                 bgcolor: "#FFEAD0",
                 color: ACCENT_ORANGE,
@@ -59,6 +57,7 @@ function Work() {
                 alignItems: "center",
                 justifyContent: "center",
                 svg: { fontSize: 16 },
+                
               }}
             >
               <LocalOfferRoundedIcon />
@@ -70,21 +69,20 @@ function Work() {
 
           <Typography
             component="h2"
-            sx={{ fontWeight: 900, fontSize: { xs: 24, sm: 30, md: 36 }, color: "#1c1c28", lineHeight: 1.2 }}
+            sx={{ fontWeight: 900, fontSize: { xs: 24, sm: 30, md: 36 }, color: "#1c1c28", lineHeight: 1.2 ,mb:2}}
           >
             Rental Car in 3 Easy Steps
           </Typography>
 
-          <Typography sx={{ maxWidth: 650, color: "text.secondary", fontSize: { xs: 14, sm: 15 }, lineHeight: 1.8 }}>
+          <Typography sx={{ maxWidth: 650, color: "text.secondary", fontSize: { xs: 14, sm: 15 }, lineHeight: 1.5, }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Typography>
         </Stack>
 
         {/* Steps */}
-        <Grid container spacing={3}>
+        <Grid container spacing={3} sx={{ mt: 2 }}>
           {steps.map((step) => (
             <Grid key={step.number} item xs={12} md={4}>
-              {/* IMPORTANT: wrapper must be relative and keep space for the circle */}
               <Box sx={{ position: "relative", pb: `${NUM_SIZE / 2 + 8}px` }}>
                 <Card
                   elevation={2}
