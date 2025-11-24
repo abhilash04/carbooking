@@ -20,24 +20,24 @@ const NUM_SIZE = 56; // diameter of the step circle
 const steps = [
   {
     number: 1,
-    title: "Pick and Reserve a Car",
+    title: "Choose Your Car",
     icon: <TouchAppRoundedIcon sx={{ fontSize: 40, color: BRAND_BLUE }} />,
     text:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Browse through our vehicle options and select the one that best fits your trip.",
   },
   {
     number: 2,
-    title: "Customize your preferences",
+    title: "Customize Your Ride",
     icon: <EditNoteRoundedIcon sx={{ fontSize: 40, color: BRAND_BLUE }} />,
     text:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Add extra features, pick your preferences, and set your schedule effortlessly.",
   },
   {
     number: 3,
-    title: "Complete and Pay",
+    title: "Confirm and Pay",
     icon: <PointOfSaleRoundedIcon sx={{ fontSize: 40, color: BRAND_BLUE }} />,
     text:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Complete your secure payment and get instant booking confirmation.",
   },
 ];
 
@@ -71,11 +71,11 @@ function Work() {
             component="h2"
             sx={{ fontWeight: 900, fontSize: { xs: 24, sm: 30, md: 36 }, color: "#1c1c28", lineHeight: 1.2 ,mb:2}}
           >
-            Rental Car in 3 Easy Steps
+            Book Your Ride in 3 Simple Steps
           </Typography>
 
-          <Typography sx={{ maxWidth: 650, color: "text.secondary", fontSize: { xs: 14, sm: 15 }, lineHeight: 1.5, }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <Typography sx={{ maxWidth: 650, color: "text.secondary", fontSize: { xs: 16, sm: 17 }, lineHeight: 1.5, }}>
+            Fast, easy, and designed to get you on the road in minutes.
           </Typography>
         </Stack>
 
@@ -102,7 +102,7 @@ function Work() {
                       <Typography variant="h6" sx={{ fontWeight: 700, fontSize: { xs: 18, sm: 20 }, color: "#1c1c28" }}>
                         {step.title}
                       </Typography>
-                      <Typography sx={{ color: "text.secondary", fontSize: 14, lineHeight: 1.8 }}>
+                      <Typography sx={{ color: "text.secondary", fontSize: 16, lineHeight: 1.8 }}>
                         {step.text}
                       </Typography>
                     </Stack>

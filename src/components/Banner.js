@@ -63,9 +63,9 @@ const Banner = () => {
   const slides = [
     {
       id: 1,
-      title: "Your Smoothest Ever Car Rental Experience",
+      title: "Begin your journey with Vihaan Travels.",
       description:
-        "Book from a wide range of luxury and budget vehicles ready to ride anywhere, anytime.",
+        "Enjoy fast, trusted travel booking with top vehicles and expert support at every step.",
       count: 120,
       image: car1,
     },

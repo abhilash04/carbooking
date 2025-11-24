@@ -194,9 +194,9 @@ function AboutUs() {
                   lineHeight: 1.2,
                 }}
               >
-                Your Trusted All-in-One
+                Easy Travel Services 
                 <br />
-                Rental Car Partner
+                for Every Trip
               </Typography>
 
               {/* paragraph */}
@@ -208,8 +208,7 @@ function AboutUs() {
                   lineHeight: 1.8,
                 }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Vihaan Travels is a trusted booking partner known for its experience, care, and commitment to giving every customer a smooth travel experience.
               </Typography>
 
               {/* Stats (all end at the same time) */}
@@ -280,18 +279,18 @@ function AboutUs() {
             <Stack spacing={3}>
               <FeatureCard
                 variant="accent"
-                title="Quick & Easy Booking"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                title="Easy Booking Process"
+                text="Enjoy safe, comfortable trips in cars that are always well-maintained, thoroughly checked, and kept in excellent condition for every journey."
                 icon={<AssignmentTurnedInRoundedIcon />}
               />
               <FeatureCard
-                title="All-in-One Services"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                title="Clean and Reliable Vehicles"
+                text="Enjoy safe, comfortable trips in cars that are always well-maintained and ready for any journey."
                 icon={<LayersRoundedIcon />}
               />
               <FeatureCard
-                title="24/7 Support"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                title="Support Anytime You Need"
+                text="Our dedicated team is available 24/7 to assist you at every stage of your journey, ensuring support no matter the time or situation."
                 icon={<SupportAgentRoundedIcon />}
               />
             </Stack>

@@ -167,21 +167,20 @@ function ChooseUs() {
               lineHeight: 1.25,
             }}
           >
-            Trusted by Thousands,
+            Delivering Tours With Trust, 
             <br />
-            Become your Preferred Choice.
+            Comfort, And Consistency.
           </Typography>
 
           <Typography
             sx={{
               maxWidth: 650,
               color: "text.secondary",
-              fontSize: { xs: 14, sm: 15 },
+              fontSize: { xs: 15, sm: 17 },
               lineHeight: 1.8,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Designed to give you a smoother, safer, and more comfortable travel experience.
           </Typography>
         </Stack>
 
@@ -190,24 +189,24 @@ function ChooseUs() {
           <Grid item xs={12} md={5}>
             <Tile
               variant="orange"
-              title="Quick & Easy Booking"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              title="Quick and Easy Booking"
+              text="Book your ride effortlessly with a fast, user-friendly booking process."
               icon={<AssignmentTurnedInRoundedIcon />}
             />
           </Grid>
 
           <Grid item xs={12} md={3.5}>
             <Tile
-              title="Well Maintained Cars"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              title="Well-Maintained Cars"
+              text="Enjoy safe, comfortable travel in vehicles that are regularly cleaned and serviced."
               icon={<DirectionsCarRoundedIcon />}
             />
           </Grid>
 
           <Grid item xs={12} md={3.5}>
             <Tile
-              title="Flexible Pickup & Return"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              title="Flexible Pickup and Return"
+              text="Pick your preferred pickup and drop-off locations and travel on your schedule."
               icon={<AutorenewRoundedIcon />}
             />
           </Grid>
@@ -215,7 +214,7 @@ function ChooseUs() {
           <Grid item xs={12} md={3.5}>
             <Tile
               title="Trusted Technicians"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+              text="Your vehicle is cared for by trained professionals who ensure top performance."
               icon={<VerifiedRoundedIcon />}
             />
           </Grid>
@@ -223,7 +222,7 @@ function ChooseUs() {
           <Grid item xs={12} md={3.5}>
             <Tile
               title="All-in-One Services"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+              text="Get everything you need - from rentals to transfers - conveniently in one place."
               icon={<BuildCircleRoundedIcon />}
             />
           </Grid>
@@ -232,7 +231,7 @@ function ChooseUs() {
             <Tile
               variant="blue"
               title="Customer-Centered Service"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+              text="Experience helpful, responsive support focused entirely on your comfort."
               icon={<HeadsetMicRoundedIcon />}
             />
           </Grid>

@@ -26,39 +26,38 @@ const BRAND_BLUE = "#2B22C9";
 
 const items = [
   {
-    title: "One-Way Rentals",
+    title: "Go-Anywhere One-Way Trips",
     icon: <DirectionsCarRoundedIcon />,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "Have flexible trips with simple one-way booking features.",
   },
   {
-    title: "Standar & Luxury Car Rentals",
+    title: "Comfort and Luxury on Demand",
     icon: <WorkspacePremiumRoundedIcon />,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "Select from a range of comfortable, stylish, and well-maintained vehicles.",
   },
   {
-    title: "Corporate Rentals",
+    title: "Smart Corporate Travel",
     icon: <CorporateFareRoundedIcon />,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "Easy travel options made for office teams and business trips.",
   },
   {
-    title: "Electric Car Rentals",
+    title: "Drive Clean with Electric Cars",
     icon: <ElectricBoltRoundedIcon />,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "Eco-friendly cars for smooth and sustainable travel.",
   },
   {
-    title: "Airport & City Transfers",
+    title: "Smooth Airport & City Rides",
     icon: <ConnectingAirportsRoundedIcon />,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "Fast and comfortable pick-up and drop-off services.",
   },
   {
-    title: "Rent with Driver Service",
+    title: "Ride Easy with a Pro Driver",
     icon: <PersonPinCircleRoundedIcon />,
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+    text: "Relax and travel stress-free with a professional driver.",
   },
 ];
 
 function ServiceCard({ title, text, icon }) {
- 
   return (
     <Card
       elevation={0}
@@ -129,7 +128,7 @@ function ServiceCard({ title, text, icon }) {
 }
 
 function Services() {
-   const theme = useTheme();
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box>
@@ -199,19 +198,18 @@ function Services() {
                 color: "#1c1c28",
               }}
             >
-              Complete Solutions for Your Vehicle Needs
+              Travel Services Made Easy for Every Journey
             </Typography>
 
             <Typography
               sx={{
                 maxWidth: 650,
                 color: "text.secondary",
-                fontSize: { xs: 14, sm: 15 },
+                fontSize: { xs: 16 , sm: 18 },
                 lineHeight: 1.8,
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Booking options that are very easy to use for all your travelling needs
             </Typography>
 
             <Divider sx={{ width: 80, borderColor: "#e0e0f0" }} />
