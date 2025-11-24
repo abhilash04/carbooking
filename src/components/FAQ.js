@@ -23,20 +23,20 @@ const FAQ_BG = "#F2F2FF";
 
 const faqs = [
   {
-    q: "How do I book a rental car?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    q: "How do I book a rental with Vihaan Travels?",
+    a: "Booking is easy - choose your vehicle, enter your details, and confirm. We take care of everything through our booking portal.",
   },
   {
-    q: "What documents do I need to rent a car?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    q: "What documents do I need to rent a vehicle?",
+    a: "You only need a valid driving license and an ID to get started.",
   },
   {
-    q: "Can I modify or cancel my booking?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    q: "Can I change or cancel my booking?",
+    a: "Yes, you can update or cancel your reservation anytime through your account or by contacting our support team.",
   },
   {
-    q: "Do you offer roadside assistance?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    q: "Do you offer customer or roadside assistance?",
+    a: "Yes, we provide 24/7 assistance for all customers who book with Vihaan Travels.",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function FAQ() {
               variant="body2"
               sx={{ fontWeight: 800, color: ACCENT_ORANGE, letterSpacing: 1 }}
             >
-              FAQ
+              Frequently Asked Questions
             </Typography>
           </Stack>
 
@@ -146,12 +146,11 @@ export default function FAQ() {
             sx={{
               maxWidth: 700,
               color: "text.secondary",
-              fontSize: { xs: 14, sm: 15 },
+              fontSize: { xs: 18, sm: 20 },
               lineHeight: 1.8,
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Clear Guidance for Every Traveller
           </Typography>
         </Stack>
 
@@ -163,7 +162,7 @@ export default function FAQ() {
               sx={{
                 position: "relative",
                 borderRadius: 2,
-                height: { xs: 260, sm: 320, md: 440 },
+                height: { xs: 320, sm: 320, md: 440 },
                 overflow: "hidden",
               }}
             >
@@ -186,7 +185,7 @@ export default function FAQ() {
                     position: "absolute",
                     top: { xs: 1, sm: 16, md: 1 },
                     right: { xs: 6, sm: 10 },
-                    height: { xs: "10%", sm: "12%", md: "17%" },
+                    height: { xs: "12%", sm: "12%", md: "17%" },
                     maxHeight: { xs: 200, sm: 240, md: 300 },
                     objectFit: "contain",
                     pointerEvents: "none",
